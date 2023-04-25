@@ -11,16 +11,10 @@ import (
 )
 
 func main() {
+
+	// 01.01: Create a new echo instance and listen for OS signals to gracefully shut down the server.
 	// Setup
 	e := echo.New()
-
-	// Create new file logger
-	f, err := os.OpenFile("logs/backend.log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
-	if err != nil {
-		e.Logger.Fatal(err)
-	}
-	defer f.Close()
-	//e.Logger.SetOutput(f)
 	e.Logger.SetLevel(log.INFO)
 	e.GET("/", func(c echo.Context) error {
 		time.Sleep(5 * time.Second)
@@ -39,9 +33,12 @@ func main() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Kill, os.Interrupt)
 	<-quit
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	if err := e.Shutdown(ctx); err != nil {
 		e.Logger.Fatal(err)
 	}
+	// 01.01: END
+	// Result: The server shuts down immediately when any signal is received.
+	// Concept failed.
 }

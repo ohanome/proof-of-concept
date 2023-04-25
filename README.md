@@ -10,5 +10,5 @@ Feel free to contribute ideas, fixes and improvements!
 
 ## Projects
 
-### [01: (Go) Echo as standalone backend application](./01-backend-echo-standalone)
-### [02: (Go) Echo as backend application wrapped in a Cobra command setup](./01-backend-echo-standalone)
+### [01: (Go) Graceful shutdown of Echo instance](./01-backend-echo-graceful-shutdown)
+### [02: (Go) Echo as backend application wrapped in a Cobra command setup](./01-backend-echo-graceful-shutdown)
